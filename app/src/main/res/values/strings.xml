@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Toast追踪器</string>
+    <string name="service_description">您需要启动此辅助功能服务来探测Toast</string>
+</resources>
