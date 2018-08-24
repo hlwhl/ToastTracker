@@ -40,6 +40,9 @@ before_install:
 
 script:
     - ./gradlew assembleDebug -PdisablePreDex --stacktrace
+    
+before_deploy:
+  - ls app/build/outputs/apk/
 
 deploy:
   provider: release
