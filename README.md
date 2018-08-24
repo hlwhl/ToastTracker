@@ -1,4 +1,4 @@
-# ToastTracker APP
+# ToastTracker APP[![Build Status](https://travis-ci.org/hlwhl/ToastTracker.svg?branch=dev)](https://travis-ci.org/hlwhl/ToastTracker)
 Track which application send toast message.
 
 ## README work in progress
