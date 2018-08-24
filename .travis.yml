@@ -40,3 +40,10 @@ before_install:
 
 script:
     - ./gradlew assembleDebug -PdisablePreDex --stacktrace
+
+deploy:
+  provider: release
+  api_key: 
+    secure: ${MY_TOKEN}
+  file: "app/build/outputs/apk/app-release-unsigned.apk"
+  skip_cleanup: true
