@@ -31,6 +31,9 @@ public class ToastTrackerService extends AccessibilityService {
             if(parcelable instanceof Notification){
                 return;
             }else{
+                if(accessibilityEvent.getText().isEmpty()){
+                    return;
+                }
                 String toastmsg= accessibilityEvent.getText().get(0).toString();
                 //Toast.makeText(getApplicationContext(), source+toastmsg, Toast.LENGTH_LONG).show();
                 NotificationUtil notificationUtil=new NotificationUtil(getApplicationContext());

@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private void getAndSetServiceStatus(){
         if(!isAccessibilityEnabled(getApplicationContext(), SERVICE_ID)){
             status.setText("监测服务状态:关");
-            settings.setVisibility(View.VISIBLE);
             settings.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } else {
-            settings.setVisibility(View.GONE);
             status.setText("监测服务状态:开");
         }
     }
