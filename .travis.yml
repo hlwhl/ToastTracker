@@ -1,52 +1,39 @@
 language: android
 jdk: oraclejdk8
 sudo: true
-
 before_install:
-- yes | sdkmanager "platforms;android-27"
-- yes | sdkmanager "platforms;android-28"
-
-
+- yes | sdkmanager "build-tools;28.0.0-rc1"
+openssl aes-256-cbc -K $encrypted_8dd759ebbca6_key -iv $encrypted_8dd759ebbca6_iv -in androidKey.enc -out androidKey -d
 env:
-    global:
-        - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins
-
+  global:
+  - ADB_INSTALL_TIMEOUT=10
+  - secure: Unplgbc8mfI+B3fdX58kRYLYmiH0lqQ+j1OTlGXWv3QWQkZqaVy8PDuz1hnP/VyDZVUk6aJunrmg+YA9smS728goqghPeHXVpzuxnFwQ8KTfqJdIRtouSA2lXN+VqkgWrT7/pIHh6j9SwuWWVQj4Gwo1QQk1OCEtCXS37faq3Uit5mLIf+lXnCK4qZ8JsJM3dGliFci5Jc5Sysn26GM2LeKe0GuiWO6hTLr4LmM2oDKNqNP0e3jza44eSXF2QVPAbK9zGuI5uR7iqCHhZGsiuC4bdcgvdulQvNjrIcwPYKOtYyI6m740881dCCC4GNap4ypKTsWYEZVCKYzxsyEajzdH+HB5uHhvej16K7jzlEkCXKrrOWdVjQNtJO5G2LBLazEJevMwIItFEZtLwZ77qYj5rRu9NldUdH34iXuPHXU3jhNkU0+I8ZBrrdsjq/08nXISecUaGE44+BJef0kS/88G93Y602o4E8Ty09MaIbDVHhk25F2Bm/VqofHxFlGUnRForLYT1lK6Vt2jOosHrDTpV5kx9q7KmWGOe2CAPvq8e3kvAhhm0n5NDMgHHBY80SYt7UgjS63TBpflJeH+Qr/qL8Cao9dytl1hkA96Q0vSRyfTQHt0fkkn9ufABoCXxCX+eqV2UUuBKSKs3iw6xstxFiOh+rUITGIHQKOzXDo=
+  - secure: gje1juBMk+jXBQSqZC9B3tEBW0n2os4K7DCPweaTTnKbEB9iOChow437uq6zOClB5Jx29uCC/urW5uwXueXCnIawoDKGppiVusVQlznbXXstOANfUTX9aE1ln2vEFWVgiCdwTMkxepSgJM6pb2Ofszz5tvBP4lGgK501dqnFeWKp3wOJssJ2bt/B9M1qv0VHeytNIEhHFggXMNQ/U5CkRD3dc1NrpqG9/46eOdXvuUbnbtXF60fyHWl+X80nZYoc4Tmq5uVRybzVKB+zg+jdvdf7I/g6u8Y7QipUJaMLc29EGSbjGSLi9a6+SoovxTEa+AcNhGP5oaI+ljgecWLh+O1nlMC1CQGUz7W8pHtdjrgUGvdo/cgKBcQTilty9NRnDOFhYlJRBrrQdgcnz95whTQc8Mflic8vAEpl3dQCfBI0hUA26WfIgkVLkHBiWIyTZ3yjnW8PYyv+n4GaGWgpzVl8EN6VxSGDOSiHW1v4W8X3H5BPRHfKyR6wxaSIMG0ltaMN2K/2ER4WkLtHyoHCsDuxLiJHm7weSg7Ke0zw/8uxlOzsYD9jhJrIhcnnerLpBStDdQRpijywAPOLZ11T6o0rVtsd2XbBIw1P68EPA+XhKwFVNUFmxzboYly90ZlzIgrm7Yq2C0xZ6QzZTXu1ofwjFEZjPdSRPFwQQV3pH5Q=
 before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
-  directories:      #Cache all dirs under .gradle folder
-    - $HOME/.gradle/daemon      #Cache daemon logs
-    - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
-    - $HOME/.gradle/wrapper     #Cache the gradle
-
+  directories:
+  - "$HOME/.gradle/daemon"
+  - "$HOME/.gradle/native"
+  - "$HOME/.gradle/wrapper"
 android:
-    update_sdk: true
-    components:
-        - platform-tools
-        - tools
-        - build-tools-28.0.0-rc1
-        - android-P
-
-        # Additional components
-        - extra-google-m2repository
-        - extra-android-m2repository
-
+  update_sdk: true
+  components:
+  - platform-tools
+  - tools
+  - build-tools-28.0.0-rc1
+  - android-P
+  - extra-google-m2repository
+  - extra-android-m2repository
 before_script:
-    - chmod +x gradlew      #Grand permissions
-
-before_install:
-    - yes | sdkmanager "build-tools;28.0.0-rc1"
-
+- chmod +x gradlew
 script:
-    - ./gradlew assembleDebug -PdisablePreDex --stacktrace
-    
+- "./gradlew assembleDebug -PdisablePreDex --stacktrace"
 before_deploy:
-  - ls app/build/outputs/apk/
-
+- ls app/build/outputs/apk/
 deploy:
   provider: releases
-  api_key: 
-    secure: ${MY_TOKEN}
-  file: "app/build/outputs/apk/debug/app-debug.apk"
+  api_key:
+    secure: "${MY_TOKEN}"
+  file: app/build/outputs/apk/release/app-release-unsigned.apk
   skip_cleanup: true

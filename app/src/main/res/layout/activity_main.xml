@@ -11,7 +11,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="本应用开启后将会监测Toast信息，一旦监测到Toast信息，将发送推送通知告知您是哪个应用发送的Toast信息。使用前请预先将本应用的辅助功能打开。"
+        android:text="本应用开启后将会监测Toast信息，一旦监测到Toast信息，将发送推送通知告知您是哪个应用发送的Toast信息。使用前请预先将本应用的辅助功能打开。使用完毕后您可以在此关闭服务，节省内存。"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
