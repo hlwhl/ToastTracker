@@ -8,4 +8,7 @@ After I switched my phone form iPhone to Android (Google Pixel Phone), I found t
 
 ![Example1](1.jpeg "annoying toast")
 
+In the Android framework, Accessibility API can provide the possibility that can access the Toast message.
+
 This application is live on Google Play, Address:https://play.google.com/store/apps/details?id=com.linwei.electronicdream.toasttracker
+
